@@ -14,11 +14,11 @@ import {
   LockIcon,
   Button,
 } from './styles'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import Logo from '@/assets/logo.png'
 import Head from 'next/head'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
 
 const loginFormSchema = z.object({
   user: z
