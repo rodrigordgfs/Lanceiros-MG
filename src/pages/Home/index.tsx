@@ -21,7 +21,7 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 
 const loginFormSchema = z.object({
-  user: z
+  username: z
     .string()
     .min(6, {
       message: 'O usuário deve ter no mínimo 6 caracteres',
@@ -29,10 +29,14 @@ const loginFormSchema = z.object({
     .max(20, {
       message: 'O usuário deve ter no máximo 20 caracteres',
     }),
-  password: z.string().min(6, {
-    message: 'A senha deve ter no mínimo 6 caracteres',
-  }),
-  remember: z.boolean(),
+  password: z
+    .string()
+    .min(6, {
+      message: 'A senha deve ter no mínimo 6 caracteres',
+    })
+    .max(20, {
+      message: 'O usuário deve ter no máximo 20 caracteres',
+    }),
 })
 
 type LoginFormData = z.infer<typeof loginFormSchema>
@@ -45,7 +49,7 @@ export default function Home() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      user: '',
+      username: '',
       password: '',
     },
   })
@@ -76,12 +80,14 @@ export default function Home() {
               <Input
                 type="text"
                 placeholder="lanceirosmg"
-                id="user"
+                id="username"
                 disabled={isSubmitting}
-                {...register('user')}
+                {...register('username')}
               />
             </TextInputContainer>
-            {errors.user && <InputError>{errors.user.message}</InputError>}
+            {errors.username && (
+              <InputError>{errors.username.message}</InputError>
+            )}
           </InputContainer>
           <InputContainer>
             <InputLabel htmlFor="password">Senha</InputLabel>
