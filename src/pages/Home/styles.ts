@@ -1,5 +1,3 @@
-'use client'
-
 import { styled } from '@/styles'
 import { Lock, User } from 'phosphor-react'
 
